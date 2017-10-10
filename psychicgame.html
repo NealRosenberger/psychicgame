@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic Game</title>
+</head>
+<body>
+
+	<div id="game">
+    	<p>Press  s to start playing!</p>
+  	</div>
+
+	<script type="text/javascript">
+
+	var user;  var winCount = 0;
+ 
+    var computerChoices = ["a", "b", "c", "d", "e", "f", "g","h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r","s", "t", "u", "v", "w", "x", "y", "z"];
+
+    // Creating variables to hold the number of wins, losses, and count They start at 0.
+    var win = 0;
+    var lose = 0;
+    var lives = 10;
+    var guess = []
+
+		
+	document.onkeyup = function(event) {
+
+	// Determines which key was pressed.
+    var userGuess = event.key;
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+  // win
+        if ( userGuess === computerGuess) {
+          win++;
+        }
+ // Lose
+        else {lose++; 
+        	guess.push(userGuess)
+
+        }
+
+       // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+        var html =
+          "<p>You chose: " + userGuess + "</p>" +
+          "<p>The computer chose: " + computerGuess + "</p>" +
+          "<p>wins: " + win + "</p>" +
+          "<p>losses: " + lose + "</p>" +
+          "<p>guesses: " + guess + "</p>"+
+          "<p>ties: " + lives + "</p>"
+          ;
+
+
+          lives--;
+        // Set the inner HTML contents of the #game div to our html string
+        document.querySelector("#game").innerHTML = html;
+      };
+   
+
+
+
+	</script>
+</body>
+</html>
